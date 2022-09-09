@@ -37,7 +37,7 @@ CREATE TABLE `library_map` (
 
 LOCK TABLES `library_map` WRITE;
 /*!40000 ALTER TABLE `library_map` DISABLE KEYS */;
-INSERT INTO `library_map` VALUES ('id1', 'img_path1', 1, '2022-08-17 09:03:26');
+INSERT INTO `library_map` VALUES ('id1', 'img_path1', 1, '2022-08-17 09:03:26'),('id2', 'img_path2', 2, '2022-08-17 09:03:26'),('id3', 'img_path3', 3, '2022-08-17 09:03:26');
 /*!40000 ALTER TABLE `library_map` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -75,6 +75,30 @@ INSERT INTO `facility_info` VALUES ('fid1', '多功能房间', 'MULTI-FUNCTION',
 /*!40000 ALTER TABLE `facility_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+--
+-- Table structure for table `search_record`
+--
+
+DROP TABLE IF EXISTS `search_record`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `search_record` (
+  `id` varchar(45) NOT NULL,
+  `content` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `search_record`
+--
+
+LOCK TABLES `search_record` WRITE;
+/*!40000 ALTER TABLE `search_record` DISABLE KEYS */;
+INSERT INTO `search_record` VALUES ('sd','sdf');
+/*!40000 ALTER TABLE `search_record` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `shelf_info`

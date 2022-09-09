@@ -2,3 +2,9 @@ spring:
   profiles:
     active: dev
 
+# 解决springboot与swagger不匹配的问题
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+

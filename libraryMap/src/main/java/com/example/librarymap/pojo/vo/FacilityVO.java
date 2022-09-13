@@ -29,6 +29,9 @@ public class FacilityVO {
     // 检索条目
     private String contentForSearch;
 
+    // 设施图片
+    private String imgPath;
+
     // 状态
     private Integer status;
 
@@ -105,6 +108,14 @@ public class FacilityVO {
 
     public void setContentForSearch(String contentForSearch) {
         this.contentForSearch = contentForSearch;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     public Integer getStatus() {

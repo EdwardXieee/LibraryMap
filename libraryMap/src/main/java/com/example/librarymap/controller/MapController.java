@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import tk.mybatis.mapper.entity.Example;
+
 import java.util.List;
 
 @RestController
@@ -27,13 +29,16 @@ public class MapController {
     @ApiOperation(value = "获取所有楼层的地图", notes = "获取所有楼层的地图的接口")
     @PostMapping("/queryMaps")
     public JSONResult queryMaps() {
-        List<LibraryMap> result = libraryMapMapper.queryMap();
-        return JSONResult.ok(result);
+        return JSONResult.ok(libraryMapMapper.selectAll());
     }
 
     @ApiOperation(value = "根据楼层数获取地图", notes = "根据楼层数获取地图的接口")
     @PostMapping("/getMapByFloor")
     public JSONResult getMapByFloor(Integer floorNum) {
-        return JSONResult.ok(libraryMapMapper.getMapByFloor(floorNum));
+        Example mapExample = new Example(LibraryMap.class);
+        Example.Criteria floorNumCriteria = mapExample.createCriteria();
+        floorNumCriteria.andEqualTo("floorNum", floorNum);
+        LibraryMap result = libraryMapMapper.selectOneByExample(mapExample);
+        return JSONResult.ok(result);
     }
 }

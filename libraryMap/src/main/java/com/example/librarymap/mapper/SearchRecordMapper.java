@@ -1,9 +1,10 @@
 package com.example.librarymap.mapper;
 
-import com.example.librarymap.pojo.LibraryMap;
+import com.example.librarymap.config.MyMapper;
 import com.example.librarymap.pojo.SearchRecord;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.apache.ibatis.annotations.Mapper;
 
-public interface SearchRecordMapper extends JpaRepository<SearchRecord, String> {
-    
+@Mapper
+public interface SearchRecordMapper extends MyMapper<SearchRecord> {
+
 }

@@ -35,6 +35,9 @@ public class FacilityInfo {
     // 检索条目
     private String contentForSearch;
 
+    // 设施图片
+    private String imgPath;
+
     // 状态
     private Integer status;
 

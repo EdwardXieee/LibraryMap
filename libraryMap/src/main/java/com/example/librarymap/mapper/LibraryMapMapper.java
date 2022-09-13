@@ -1,18 +1,12 @@
 package com.example.librarymap.mapper;
 
+import com.example.librarymap.config.MyMapper;
 import com.example.librarymap.pojo.LibraryMap;
-import org.mapstruct.Mapper;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
-public interface LibraryMapMapper extends JpaRepository<LibraryMap, String> {
-    @Query(value = "select * from library.library_map order by floor_num",nativeQuery=true)
-    List<LibraryMap> queryMap();
+public interface LibraryMapMapper extends MyMapper<LibraryMap> {
 
-    @Query(value = "select * from library.library_map lm where lm.floor_num=:floorNum",nativeQuery=true)
-    LibraryMap getMapByFloor(@Param("floorNum") Integer floorNum);
 }

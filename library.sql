@@ -59,6 +59,7 @@ CREATE TABLE `facility_info` (
   `description_EN` varchar(255) DEFAULT NULL COMMENT '英文描述',
   `floor_num` tinyint(4) NOT NULL DEFAULT '0' COMMENT '楼层数',
   `content_for_search` varchar(255) DEFAULT NULL COMMENT '搜索条目（用#进行区分）',
+  `img_path` varchar(255) DEFAULT NULL COMMENT '设施图片',
   `status` int(11) NOT NULL DEFAULT '1',
   `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -71,7 +72,7 @@ CREATE TABLE `facility_info` (
 
 LOCK TABLES `facility_info` WRITE;
 /*!40000 ALTER TABLE `facility_info` DISABLE KEYS */;
-INSERT INTO `facility_info` VALUES ('fid1', '多功能房间', 'MULTI-FUNCTION', '名字', 'name', '描述', 'description', 1, "多功能#万能#投影", 1,'2022-08-17 09:03:26');
+INSERT INTO `facility_info` VALUES ('fid1', '多功能房间', 'MULTI-FUNCTION', '名字', 'name', '描述', 'description', 1, "多功能#万能#投影","nqprod/oDwsO5Mjxnj2-O1yXl064bOQbELQ/article/1910312CX6FK5N0H/0.png",1,'2022-08-17 09:03:26');
 /*!40000 ALTER TABLE `facility_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

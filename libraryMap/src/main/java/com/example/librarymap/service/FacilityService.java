@@ -8,5 +8,5 @@ import java.util.List;
 
 @Mapper
 public interface FacilityService {
-    List<FacilityInfo> getFacilitiesByTag(Integer page, Integer pageSize, String tag, Integer floorNum);
+    public PagedResult getFacilitiesByTag(Integer page, Integer pageSize, String tag, Integer floorNum);
 }

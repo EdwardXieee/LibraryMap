@@ -1,6 +1,7 @@
 package com.example.librarymap.controller;
 
 import com.example.librarymap.config.JSONResult;
+import com.example.librarymap.config.PagedResult;
 import com.example.librarymap.mapper.FacilityMapper;
 import com.example.librarymap.service.FacilityService;
 import io.swagger.annotations.Api;
@@ -30,7 +31,11 @@ public class FacilityController {
     @PostMapping("/getFacilitiesByTag()")
     public JSONResult getFacilitiesByTag(Integer page, Integer pageSize, String tag, Integer floorNum) {
 
-        return JSONResult.ok(facilityService.getFacilitiesByTag(page, pageSize, tag, floorNum));
+        if (page == null) {
+            page = 1;
+        }
+        PagedResult result = facilityService.getFacilitiesByTag(page, pageSize, tag, floorNum);
+        return JSONResult.ok(result);
     }
 
     @ApiOperation(value = "通过关键词对设施进行搜索", notes = "通过关键词对设施进行搜索的接口")

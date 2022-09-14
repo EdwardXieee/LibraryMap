@@ -7,4 +7,11 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
+##yml整合mybatis（暂时不需要）
+#mybatis:
+#  type-aliases-package : com.example.librarymap.pojo
+#  mapperLocations: classpath:mapper/*.xml
+
+
+
 

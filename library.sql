@@ -72,7 +72,7 @@ CREATE TABLE `facility_info` (
 
 LOCK TABLES `facility_info` WRITE;
 /*!40000 ALTER TABLE `facility_info` DISABLE KEYS */;
-INSERT INTO `facility_info` VALUES ('fid1', '多功能房间', 'MULTI-FUNCTION', '名字', 'name', '描述', 'description', 1, "多功能#万能#投影","nqprod/oDwsO5Mjxnj2-O1yXl064bOQbELQ/article/1910312CX6FK5N0H/0.png",1,'2022-08-17 09:03:26');
+INSERT INTO `facility_info` VALUES ('fid1', '多功能房间', 'MULTI-FUNCTION', '名字', 'name', '描述', 'description', 1, "#多功能#万能#投影","nqprod/oDwsO5Mjxnj2-O1yXl064bOQbELQ/article/1910312CX6FK5N0H/0.png",1,'2022-08-17 09:03:26'),('fid2', '多功能房间', 'MULTI-FUNCTION', '名字', 'name', '描述', 'description', 2, "#多功能#万能#投影","nqprod/oDwsO5Mjxnj2-O1yXl064bOQbELQ/article/1910312CX6FK5N0H/0.png",1,'2022-08-17 09:03:26');
 /*!40000 ALTER TABLE `facility_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

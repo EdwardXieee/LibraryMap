@@ -10,6 +10,7 @@ import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -28,22 +29,29 @@ public class FacilityController {
     }
 
     @ApiOperation(value = "根据选择的tag来获取包含此tag的设施", notes = "根据选择的tag来获取包含此tag的设施的接口")
+    @ResponseBody
     @PostMapping("/getFacilitiesByTag()")
     public JSONResult getFacilitiesByTag(Integer page, Integer pageSize, String tag, Integer floorNum) {
 
         if (page == null) {
             page = 1;
         }
+
         PagedResult result = facilityService.getFacilitiesByTag(page, pageSize, tag, floorNum);
         return JSONResult.ok(result);
     }
 
     @ApiOperation(value = "通过关键词对设施进行搜索", notes = "通过关键词对设施进行搜索的接口")
     @PostMapping("/searchFacilityByKeyWords()")
-    public JSONResult searchFacilityByKeyWords(Integer isSaveRecord, Integer page, Integer pageSize,
-                                               String searchText, Integer floorNum) {
+    public JSONResult searchFacilityByKeyWords(Integer isSaveRecord, Integer page, Integer pageSize, String searchText, Integer floorNum) {
 
-        return JSONResult.ok();
+        if (page == null) {
+            page = 1;
+        }
+
+        PagedResult result = facilityService.searchFacilityByKeyWords(isSaveRecord, page, pageSize, searchText, floorNum);
+
+        return JSONResult.ok(result);
     }
 
 

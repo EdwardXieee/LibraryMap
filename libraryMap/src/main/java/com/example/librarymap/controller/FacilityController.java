@@ -6,7 +6,6 @@ import com.example.librarymap.mapper.FacilityMapper;
 import com.example.librarymap.service.FacilityService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

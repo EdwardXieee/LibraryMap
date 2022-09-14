@@ -1,11 +1,9 @@
 package com.example.librarymap.service;
 
-import com.example.librarymap.config.PageUtils;
 import com.example.librarymap.config.PagedResult;
 import com.example.librarymap.mapper.FacilityMapper;
 import com.example.librarymap.mapper.SearchRecordMapper;
 import com.example.librarymap.pojo.FacilityInfo;
-import com.example.librarymap.pojo.SearchRecord;
 import com.example.librarymap.pojo.vo.FacilityVO;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -16,8 +14,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.StringUtil;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

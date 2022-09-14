@@ -3,9 +3,11 @@ package com.example.librarymap.service;
 import com.example.librarymap.mapper.LibraryMapMapper;
 import com.example.librarymap.pojo.LibraryMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MapServiceImpl implements MapService{
 
     @Autowired

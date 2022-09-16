@@ -18,8 +18,8 @@ public class MapController extends BasicController{
     @ApiOperation(value = "获取所有楼层的地图", notes = "获取所有楼层的地图的接口")
     @PostMapping("/queryMaps")
     public JSONResult queryMaps() {
-        List<LibraryMap> list = mapService.getAllLibraryMap();
-        return JSONResult.ok(list);
+        List<LibraryMap> result = mapService.getAllLibraryMap();
+        return JSONResult.ok(result);
     }
 
     @ApiOperation(value = "根据楼层数获取地图", notes = "根据楼层数获取地图的接口")

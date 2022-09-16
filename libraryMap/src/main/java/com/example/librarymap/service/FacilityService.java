@@ -9,5 +9,5 @@ public interface FacilityService {
 
     FacilityVO getFacilityById(String facilityId);
 
-    PagedResult searchFacilityByKeyWordsOrTag(Integer isSaveRecord, Integer page, Integer pageSize, String searchText, Integer floorNum);
+    PagedResult searchFacilityByKeyWordsOrTag(Boolean isSaveRecord, Integer page, Integer pageSize, String searchText, Integer floorNum);
 }

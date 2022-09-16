@@ -53,7 +53,7 @@ public class FacilityServiceImpl implements FacilityService{
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public PagedResult searchFacilityByKeyWordsOrTag(Integer isSaveRecord, Integer page, Integer pageSize, String searchText, Integer floorNum){
+    public PagedResult searchFacilityByKeyWordsOrTag(Boolean isSaveRecord, Integer page, Integer pageSize, String searchText, Integer floorNum){
         String[] texts = searchText.split(" ");
 
         // 开启分页查询并转换为vo对象
@@ -79,9 +79,10 @@ public class FacilityServiceImpl implements FacilityService{
         Example.Criteria statusCriteria = facilityExample.createCriteria();
         statusCriteria.andEqualTo("status", "1");
 
-//        facilityExample.and(criteria);
-//        facilityExample.and(floorNumCriteria);
-//        facilityExample.and(statusCriteria);
+        facilityExample.and(criteria);
+        facilityExample.and(floorNumCriteria);
+        facilityExample.and(statusCriteria);
+
         return queryFacilitiesByExample(facilityExample);
     }
 

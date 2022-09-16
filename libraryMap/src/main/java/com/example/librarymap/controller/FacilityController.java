@@ -29,8 +29,8 @@ public class FacilityController extends BasicController{
 
 
     @ApiOperation(value = "通过关键词对设施进行搜索", notes = "通过关键词对设施进行搜索的接口")
-    @PostMapping("/searchFacilityByKeyWords()")
-    public JSONResult searchFacilityByKeyWords(Integer isSaveRecord, Integer page, Integer pageSize, String searchText, Integer floorNum) {
+    @PostMapping("/searchFacilityByKeyWordsOrTag")
+    public JSONResult searchFacilityByKeyWordsOrTag(Boolean isSaveRecord, Integer page, Integer pageSize, String searchText, Integer floorNum) {
 
         if (page == null) {
             page = 1;

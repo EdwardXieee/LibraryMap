@@ -16,6 +16,13 @@ import java.util.List;
 
 @Service
 public class FacilityServiceImpl implements FacilityService{
+
+    static Integer ID=1;//暂时使用的ID，未使用sid
+
+//    public FacilityServiceImpl(){
+//        ID++;
+//    }
+
     @Autowired
     FacilityMapper facilityMapper;
 
@@ -84,6 +91,15 @@ public class FacilityServiceImpl implements FacilityService{
         facilityExample.and(statusCriteria);
 
         return queryFacilitiesByExample(facilityExample);
+    }
+
+    @Override
+    public String saveFacility(FacilityInfo facilityInfo) {
+        ID++;//暂时使用的ID自增方式
+        String id = ID.toString();
+        facilityInfo.setId(id);
+        facilityMapper.insertSelective(facilityInfo);
+        return id;
     }
 
 }

@@ -2,12 +2,16 @@ package com.example.librarymap.controller;
 
 import com.example.librarymap.config.JSONResult;
 import com.example.librarymap.config.PagedResult;
+import com.example.librarymap.pojo.FacilityInfo;
 import com.example.librarymap.pojo.vo.FacilityVO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Date;
 
 @RestController
 @Api(value = "设施相关接口", tags = { "Facility-Controller" })
@@ -42,4 +46,59 @@ public class FacilityController extends BasicController{
     }
 
 
+    @ApiOperation(value = "上传或修改设施信息", notes = "上传或修改设施信息的接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="titleCn", value="设施分类中文", required=true, dataType="String", paramType="form"),
+            @ApiImplicitParam(name="titleEn", value="设施名称英文", required=true, dataType="String", paramType="form"),
+            @ApiImplicitParam(name="nameCn", value="设施名称中文", required=true, dataType="String", paramType="form"),
+            @ApiImplicitParam(name="nameEn", value="设施名称英文", required=true, dataType="String", paramType="form"),
+            @ApiImplicitParam(name="descriptionCn", value="设施介绍中文", required=false, dataType="String", paramType="form"),
+            @ApiImplicitParam(name="descriptionEn", value="设施介绍英文", required=false, dataType="String", paramType="form"),
+            @ApiImplicitParam(name="floorNum", value="楼层数", required=true, dataType="Integer", paramType="form"),
+            @ApiImplicitParam(name="contentForSearch", value="检索条目", required=true, dataType="String", paramType="form"),
+            @ApiImplicitParam(name="status", value="状态/类别", required=true, dataType="Integer", paramType="form")
+    })
+    @PostMapping(value="/uploadFacility")
+    public JSONResult uploadFacility(@ApiParam(value = "file", required = false) MultipartFile img,
+                                     String titleCn, String titleEn, String nameCn, String nameEn,
+                                     String descriptionCn, String descriptionEn, Integer floorNum,
+                                     String contentForSearch, Integer status) throws Exception{
+        FacilityInfo facilityInfo = new FacilityInfo();
+
+        //上传设施图片    // 0:unreadable/1:readable/2:checking
+        if (/*img != null &&*/ (status==1 || status == 2)){
+            //判断大小是否超出限制
+//            if (img.getSize() > MAX_IMAGE_SIZE) {
+//                return JSONResult.errorException("Uploaded file size exceed server's limit (10MB)");
+//            }
+//            String imgName = img.getOriginalFilename();
+//            if (StringUtils.isNotBlank(imgName)) {
+//                // 保存到数据库中的相对路径
+////                String uploadPathDB = resourceService.uploadImg(img);
+//            }else {
+//                return JSONResult.errorMsg("File name is blank");
+//            }
+        }else {
+            return JSONResult.errorMsg("Upload error");
+        }
+        facilityInfo.setTitleCn(titleCn);
+        facilityInfo.setTitleEn(titleEn);
+        facilityInfo.setNameCn(nameCn);
+        facilityInfo.setNameEn(nameEn);
+        facilityInfo.setDescriptionCn(descriptionCn);
+        facilityInfo.setDescriptionEn(descriptionEn);
+        facilityInfo.setFloorNum(floorNum);
+        facilityInfo.setContentForSearch(contentForSearch);
+        //不检测是否非法，直接设置状态
+        facilityInfo.setStatus(status);
+
+        String facilityVOId = facilityService.saveFacility(facilityInfo); // 存入数据库
+
+        return JSONResult.ok(facilityVOId);
+//        if (isLegal) {
+//            return JSONResult.ok(facilityVOId);
+//        }else {
+//            return JSONResult.errorMsg("发布内容涉嫌违规");
+//        }
+    }
 }

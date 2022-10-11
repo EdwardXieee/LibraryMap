@@ -11,6 +11,14 @@ public class FacilityVO {
     // 设施分类英文
     private String titleEn;
 
+    public Integer getCategory() {
+        return category;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
+    }
+
     // 设施分类
     private Integer category;
 

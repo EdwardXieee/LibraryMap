@@ -59,6 +59,7 @@ public class FacilityController extends BasicController{
 
     @ApiOperation(value = "上传或修改设施信息", notes = "上传或修改设施信息的接口")
     @ApiImplicitParams({
+            @ApiImplicitParam(name="id", value="id", required=true, dataType="String", paramType="form"),
             @ApiImplicitParam(name="category", value="设施分类", required=true, dataType="Integer", paramType="form"),
             @ApiImplicitParam(name="nameCn", value="设施名称中文", required=true, dataType="String", paramType="form"),
             @ApiImplicitParam(name="nameEn", value="设施名称英文", required=false, dataType="String", paramType="form"),
@@ -69,6 +70,7 @@ public class FacilityController extends BasicController{
     })
     @PostMapping(value="/uploadFacility")
     public JSONResult uploadFacility(@ApiParam(value = "file", required = false) MultipartFile img,
+                                     String id,
                                      Integer category,
                                      String nameCn,
                                      String nameEn,

@@ -37,6 +37,12 @@ public class FacilityServiceImpl implements FacilityService{
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
+    public List<FacilityInfo> getAllFacilities(){
+        return facilityMapper.selectAll();
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
     public FacilityVO getFacilityById(String facilityId){
         FacilityInfo facilityInfo = facilityMapper.selectByPrimaryKey(facilityId);
         return composeFacilityVO(facilityInfo);

@@ -3,20 +3,31 @@ package com.example.librarymap.controller;
 import com.example.librarymap.config.JSONResult;
 import com.example.librarymap.config.PagedResult;
 import com.example.librarymap.pojo.FacilityInfo;
+import com.example.librarymap.pojo.LibraryMap;
 import com.example.librarymap.pojo.vo.FacilityVO;
+import com.example.librarymap.service.FacilityService;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @Api(value = "设施相关接口", tags = { "Facility-Controller" })
 @RequestMapping("/facility")
 public class FacilityController extends BasicController{
+
+    @ApiOperation(value = "查询所有设施", notes = "查询所有设施的接口")
+    @PostMapping("/queryFacilities")
+    public JSONResult queryFacilities() {
+        List<FacilityInfo> result = facilityService.getAllFacilities();
+        return JSONResult.ok(result);
+    }
 
     @ApiOperation(value = "通过单个设施的id来获取此设施的所有信息", notes = "通过单个设施的id来获取此设施的所有信息的接口")
     @PostMapping("/getFacilityById")

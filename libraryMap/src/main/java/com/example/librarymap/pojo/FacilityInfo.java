@@ -11,11 +11,8 @@ public class FacilityInfo {
     @Id
     private String id;
 
-    // 设施分类中文
-    private String titleCn;
-
-    // 设施分类英文
-    private String titleEn;
+    // 设施分类
+    private Integer category;
 
     // 设施名称中文
     private String nameCn;

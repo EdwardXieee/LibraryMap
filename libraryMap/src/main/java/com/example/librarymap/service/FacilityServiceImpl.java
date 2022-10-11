@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,13 +28,44 @@ public class FacilityServiceImpl implements FacilityService{
     public FacilityVO composeFacilityVO(FacilityInfo facilityInfo) {
         FacilityVO facilityVO = new FacilityVO();
         BeanUtils.copyProperties(facilityInfo, facilityVO);
+        switch (facilityInfo.getCategory()){
+            case 1:
+                facilityVO.setTitleCn("书籍类设施");
+                facilityVO.setTitleEn("");
+                break;
+            case 2:
+                facilityVO.setTitleCn("自习类设施");
+                facilityVO.setTitleEn("");
+                break;
+            case 3:
+                facilityVO.setTitleCn("小组类设施");
+                facilityVO.setTitleEn("");
+                break;
+            case 4:
+                facilityVO.setTitleCn("多功能类设施");
+                facilityVO.setTitleEn("");
+                break;
+            case 5:
+                facilityVO.setTitleCn("基础设施");
+                facilityVO.setTitleEn("");
+                break;
+            case 6:
+                facilityVO.setTitleCn("特殊设施");
+                facilityVO.setTitleEn("");
+                break;
+        }
         return facilityVO;
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public List<FacilityInfo> getAllFacilities(){
-        return facilityMapper.selectAll();
+    public List<FacilityVO> getAllFacilities(){
+        List<FacilityInfo> list = facilityMapper.selectAll();
+        List<FacilityVO> newList= new ArrayList<>();
+        for (FacilityInfo f : list){
+            newList.add(composeFacilityVO(f));
+        }
+        return newList;
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)

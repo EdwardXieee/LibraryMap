@@ -11,6 +11,9 @@ public class FacilityVO {
     // 设施分类英文
     private String titleEn;
 
+    // 设施分类
+    private Integer category;
+
     // 设施名称中文
     private String nameCn;
 

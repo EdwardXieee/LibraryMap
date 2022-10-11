@@ -25,7 +25,7 @@ public class FacilityController extends BasicController{
     @ApiOperation(value = "查询所有设施", notes = "查询所有设施的接口")
     @PostMapping("/queryFacilities")
     public JSONResult queryFacilities() {
-        List<FacilityInfo> result = facilityService.getAllFacilities();
+        List<FacilityVO> result = facilityService.getAllFacilities();
         return JSONResult.ok(result);
     }
 
@@ -59,8 +59,7 @@ public class FacilityController extends BasicController{
 
     @ApiOperation(value = "上传或修改设施信息", notes = "上传或修改设施信息的接口")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="titleCn", value="设施分类中文", required=true, dataType="String", paramType="form"),
-            @ApiImplicitParam(name="titleEn", value="设施名称英文", required=false, dataType="String", paramType="form"),
+            @ApiImplicitParam(name="category", value="设施分类", required=true, dataType="Integer", paramType="form"),
             @ApiImplicitParam(name="nameCn", value="设施名称中文", required=true, dataType="String", paramType="form"),
             @ApiImplicitParam(name="nameEn", value="设施名称英文", required=false, dataType="String", paramType="form"),
             @ApiImplicitParam(name="descriptionCn", value="设施介绍中文", required=false, dataType="String", paramType="form"),
@@ -70,8 +69,7 @@ public class FacilityController extends BasicController{
     })
     @PostMapping(value="/uploadFacility")
     public JSONResult uploadFacility(@ApiParam(value = "file", required = false) MultipartFile img,
-                                     String titleCn,
-                                     String titleEn,
+                                     Integer category,
                                      String nameCn,
                                      String nameEn,
                                      String descriptionCn,
@@ -96,8 +94,7 @@ public class FacilityController extends BasicController{
 //        }else {
 //            return JSONResult.errorMsg("Upload error");
 //        }
-        facilityInfo.setTitleCn(titleCn);
-        facilityInfo.setTitleEn(titleEn);
+        facilityInfo.setCategory(category);
         facilityInfo.setNameCn(nameCn);
         facilityInfo.setNameEn(nameEn);
         facilityInfo.setDescriptionCn(descriptionCn);

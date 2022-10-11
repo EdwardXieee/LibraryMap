@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface FacilityService {
 
-    List<FacilityInfo> getAllFacilities();
+    List<FacilityVO> getAllFacilities();
 
     FacilityVO getFacilityById(String facilityId);
 

@@ -51,8 +51,7 @@ DROP TABLE IF EXISTS `facility_info`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `facility_info` (
   `id` varchar(100) NOT NULL COMMENT '主键id',
-  `title_CN` varchar(255) DEFAULT NULL COMMENT '中文类别',
-  `title_EN` varchar(255) DEFAULT NULL COMMENT '英文类别',
+  `fid` varchar(100) NOT NULL COMMENT '设施id',
   `name_CN` varchar(255) DEFAULT NULL COMMENT '中文名称',
   `name_EN` varchar(255) DEFAULT NULL COMMENT '英文名称',
   `description_CN` varchar(255) DEFAULT NULL COMMENT '中文描述',

@@ -16,5 +16,5 @@ public interface FacilityService {
 
     PagedResult searchFacilityByKeyWordsOrTag(Boolean isSaveRecord, Integer page, Integer pageSize, String searchText, Integer floorNum);
 
-    public String saveFacility(FacilityInfo facilityInfo);
+    String saveFacility(FacilityInfo facilityInfo, String id);
 }

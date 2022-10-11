@@ -17,12 +17,6 @@ import java.util.List;
 @Service
 public class FacilityServiceImpl implements FacilityService{
 
-    static Integer ID=1;//暂时使用的ID，未使用sid
-
-//    public FacilityServiceImpl(){
-//        ID++;
-//    }
-
     @Autowired
     FacilityMapper facilityMapper;
 
@@ -100,9 +94,8 @@ public class FacilityServiceImpl implements FacilityService{
     }
 
     @Override
-    public String saveFacility(FacilityInfo facilityInfo) {
-        ID++;//暂时使用的ID自增方式
-        String id = ID.toString();
+    public String saveFacility(FacilityInfo facilityInfo, String id) {
+        //TODO: id目前为手动输入，之后考虑自动创建
         facilityInfo.setId(id);
         facilityMapper.insertSelective(facilityInfo);
         return id;

@@ -34,7 +34,7 @@ public class FacilityController extends BasicController{
     public JSONResult getFacilityById(String id) {
 
         if (id.isEmpty()){
-            JSONResult.errorMsg("Id cannot be null");
+            JSONResult.errorException("Id cannot be null");
         }
 
         FacilityVO result = facilityService.getFacilityById(id);
@@ -105,7 +105,7 @@ public class FacilityController extends BasicController{
         facilityInfo.setFloorNum(floorNum);
         facilityInfo.setContentForSearch(contentForSearch);
 
-        String facilityVOId = facilityService.saveFacility(facilityInfo); // 存入数据库
+        String facilityVOId = facilityService.saveFacility(facilityInfo, id); // 存入数据库
 
         return JSONResult.ok(facilityVOId);
     }

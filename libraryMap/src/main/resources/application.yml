@@ -1,6 +1,7 @@
 spring:
   profiles:
     active: dev
+#    active: prod
 
 # 解决springboot与swagger不匹配的问题
   mvc:

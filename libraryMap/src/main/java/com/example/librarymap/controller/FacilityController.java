@@ -3,18 +3,12 @@ package com.example.librarymap.controller;
 import com.example.librarymap.config.JSONResult;
 import com.example.librarymap.config.PagedResult;
 import com.example.librarymap.pojo.FacilityInfo;
-import com.example.librarymap.pojo.LibraryMap;
 import com.example.librarymap.pojo.vo.FacilityVO;
-import com.example.librarymap.service.FacilityService;
 import io.swagger.annotations.*;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -65,8 +59,8 @@ public class FacilityController extends BasicController{
             @ApiImplicitParam(name="nameEn", value="设施名称英文", required=false, dataType="String", paramType="form"),
             @ApiImplicitParam(name="descriptionCn", value="设施介绍中文", required=false, dataType="String", paramType="form"),
             @ApiImplicitParam(name="descriptionEn", value="设施介绍英文", required=false, dataType="String", paramType="form"),
-            @ApiImplicitParam(name="floorNum", value="楼层数", required=true, dataType="Integer", paramType="form"),
-            @ApiImplicitParam(name="contentForSearch", value="用于检索的条目(默认包含类别和名称e.g., 卫生间#wc#厕所#toilet#茅坑)", required=true, dataType="String", paramType="form")
+            @ApiImplicitParam(name="floorNum", value="楼层数", required=false, dataType="Integer", paramType="form"),
+            @ApiImplicitParam(name="contentForSearch", value="用于检索的条目(默认包含类别和名称e.g., 卫生间#wc#厕所#toilet#茅坑)", required=false, dataType="String", paramType="form")
     })
     @PostMapping(value="/uploadFacility")
     public JSONResult uploadFacility(@ApiParam(value = "file", required = false) MultipartFile img,

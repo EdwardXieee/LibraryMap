@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS `facility_info`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `facility_info` (
   `id` varchar(100) NOT NULL COMMENT '主键id',
-  `fid` varchar(100) NOT NULL COMMENT '设施id',
+  `category` int(11) NOT NULL DEFAULT 1 COMMENT '设施分类',
   `name_CN` varchar(255) DEFAULT NULL COMMENT '中文名称',
   `name_EN` varchar(255) DEFAULT NULL COMMENT '英文名称',
   `description_CN` varchar(255) DEFAULT NULL COMMENT '中文描述',
@@ -71,7 +71,7 @@ CREATE TABLE `facility_info` (
 
 LOCK TABLES `facility_info` WRITE;
 /*!40000 ALTER TABLE `facility_info` DISABLE KEYS */;
-INSERT INTO `facility_info` VALUES ('fid1', '多功能房间', 'MULTI-FUNCTION', '名字', 'name', '描述', 'description', 1, "#多功能#万能#投影","nqprod/oDwsO5Mjxnj2-O1yXl064bOQbELQ/article/1910312CX6FK5N0H/0.png",1,'2022-08-17 09:03:26'),('fid2', '多功能房间', 'MULTI-FUNCTION', '名字', 'name', '描述', 'description', 2, "#多功能#万能#投影","nqprod/oDwsO5Mjxnj2-O1yXl064bOQbELQ/article/1910312CX6FK5N0H/0.png",1,'2022-08-17 09:03:26');
+INSERT INTO `facility_info` VALUES ('fid1', 1, '名字', 'name', '描述', 'description', 1, "#多功能#万能#投影","nqprod/oDwsO5Mjxnj2-O1yXl064bOQbELQ/article/1910312CX6FK5N0H/0.png",1,'2022-08-17 09:03:26'),('fid2', 1, '名字', 'name', '描述', 'description', 2, "#多功能#万能#投影","nqprod/oDwsO5Mjxnj2-O1yXl064bOQbELQ/article/1910312CX6FK5N0H/0.png",1,'2022-08-17 09:03:26');
 /*!40000 ALTER TABLE `facility_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -141,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-31 20:11:35
+-- Dump completed on 2022-08-31 20:11:35facility_info

@@ -61,6 +61,7 @@ public class FacilityServiceImpl implements FacilityService{
     @Override
     public List<FacilityVO> getAllFacilities(){
         List<FacilityInfo> list = facilityMapper.selectAll();
+        // 添加VO属性
         List<FacilityVO> newList= new ArrayList<>();
         for (FacilityInfo f : list){
             newList.add(composeFacilityVO(f));
@@ -70,16 +71,27 @@ public class FacilityServiceImpl implements FacilityService{
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public FacilityVO getFacilityById(String facilityId){
+    public FacilityVO getFacilityVOById(String facilityId){
         FacilityInfo facilityInfo = facilityMapper.selectByPrimaryKey(facilityId);
         return composeFacilityVO(facilityInfo);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public FacilityInfo getFacilityById(String facilityId){
+        return facilityMapper.selectByPrimaryKey(facilityId);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public PagedResult queryFacilitiesByExample(Example facilityExample) {
         // 通过条件，返回pagedResult
         List<FacilityInfo> list = facilityMapper.selectByExample(facilityExample);
-        PageInfo<FacilityInfo> pageInfo = new PageInfo<>(list);
+        // 添加VO属性
+        List<FacilityVO> newList= new ArrayList<>();
+        for (FacilityInfo f : list){
+            newList.add(composeFacilityVO(f));
+        }
+        PageInfo<FacilityVO> pageInfo = new PageInfo<>(newList);
 
         // 为最终返回对象 pagedResult 添加属性
         PagedResult pagedResult = new PagedResult();
@@ -105,8 +117,6 @@ public class FacilityServiceImpl implements FacilityService{
         for (String text : texts) {
             criteria.orLike("nameCn", "%" + text + "%");
             criteria.orLike("nameEn", "%" + text + "%");
-            criteria.orLike("titleCn", "%" + text + "%");
-            criteria.orLike("titleEn", "%" + text + "%");
             criteria.orLike("descriptionCn", "%" + text + "%");
             criteria.orLike("descriptionEn", "%" + text + "%");
             criteria.orLike("contentForSearch", "%" + text + "%");
@@ -132,6 +142,11 @@ public class FacilityServiceImpl implements FacilityService{
         facilityInfo.setId(id);
         facilityMapper.insertSelective(facilityInfo);
         return id;
+    }
+
+    @Override
+    public int deleteFacility(String facilityId){
+        return facilityMapper.deleteByPrimaryKey(facilityId);
     }
 
 }

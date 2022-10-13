@@ -31,7 +31,7 @@ public class FacilityController extends BasicController{
             JSONResult.errorException("Id cannot be null");
         }
 
-        FacilityVO result = facilityService.getFacilityById(id);
+        FacilityVO result = facilityService.getFacilityVOById(id);
 
         return JSONResult.ok(result);
     }
@@ -101,5 +101,19 @@ public class FacilityController extends BasicController{
         String facilityVOId = facilityService.saveFacility(facilityInfo, id); // 存入数据库
 
         return JSONResult.ok(facilityVOId);
+    }
+
+    // 此接口为真删除，慎用！！！
+    @ApiOperation(value = "删除设施信息（真删除，慎用！！！）", notes = "删除设施信息的接口")
+    @PostMapping("/deleteFacilityById")
+    public JSONResult deleteFacilityById(String facilityId) {
+        if (facilityId.isEmpty()){
+            JSONResult.errorException("Id cannot be null");
+        }
+
+        if (facilityService.deleteFacility(facilityId) == 0)
+            return JSONResult.ok("无法删除");
+        else
+            return JSONResult.ok("删除成功");
     }
 }

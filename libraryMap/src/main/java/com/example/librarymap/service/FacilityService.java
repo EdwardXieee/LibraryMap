@@ -12,9 +12,13 @@ public interface FacilityService {
 
     List<FacilityVO> getAllFacilities();
 
-    FacilityVO getFacilityById(String facilityId);
+    FacilityVO getFacilityVOById(String facilityId);
+
+    FacilityInfo getFacilityById(String facilityId);
 
     PagedResult searchFacilityByKeyWordsOrTag(Boolean isSaveRecord, Integer page, Integer pageSize, String searchText, Integer floorNum);
 
     String saveFacility(FacilityInfo facilityInfo, String id);
+
+    int deleteFacility(String facility);
 }

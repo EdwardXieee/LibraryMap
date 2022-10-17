@@ -8,6 +8,7 @@ import com.example.librarymap.pojo.vo.FacilityVO;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
@@ -26,7 +27,7 @@ public class FacilityController extends BasicController{
 
     @ApiOperation(value = "通过单个设施的id来获取此设施的所有信息", notes = "通过单个设施的id来获取此设施的所有信息的接口")
     @PostMapping("/getFacilityById")
-    public JSONResult getFacilityById(String id) {
+    public JSONResult getFacilityById(@RequestParam @ApiParam(required = true) String id) {
 
         if (id.isEmpty()){
             JSONResult.errorException("Id cannot be null");
@@ -40,7 +41,10 @@ public class FacilityController extends BasicController{
 
     @ApiOperation(value = "通过关键词对设施进行搜索", notes = "通过关键词对设施进行搜索的接口")
     @PostMapping("/searchFacilityByKeyWordsOrTag")
-    public JSONResult searchFacilityByKeyWordsOrTag(Boolean isSaveRecord, Integer page, Integer pageSize, String searchText, Integer floorNum) {
+    public JSONResult searchFacilityByKeyWordsOrTag(Boolean isSaveRecord,
+                                                    Integer page, Integer pageSize,
+                                                    @RequestParam @ApiParam(required = true) String searchText,
+                                                    Integer floorNum) {
 
         if (page == null) {
             page = 1;
@@ -53,21 +57,11 @@ public class FacilityController extends BasicController{
 
 
     @ApiOperation(value = "上传或修改设施信息", notes = "上传或修改设施信息的接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="id", value="id", required=true, dataType="String", paramType="form"),
-            @ApiImplicitParam(name="category", value="设施分类", required=true, dataType="Integer", paramType="form"),
-            @ApiImplicitParam(name="nameCn", value="设施名称中文", required=true, dataType="String", paramType="form"),
-            @ApiImplicitParam(name="nameEn", value="设施名称英文", required=false, dataType="String", paramType="form"),
-            @ApiImplicitParam(name="descriptionCn", value="设施介绍中文", required=false, dataType="String", paramType="form"),
-            @ApiImplicitParam(name="descriptionEn", value="设施介绍英文", required=false, dataType="String", paramType="form"),
-            @ApiImplicitParam(name="floorNum", value="楼层数", required=false, dataType="Integer", paramType="form"),
-            @ApiImplicitParam(name="contentForSearch", value="用于检索的条目(默认包含类别和名称e.g., 卫生间#wc#厕所#toilet#茅坑)", required=false, dataType="String", paramType="form")
-    })
     @PostMapping(value="/uploadFacility")
     public JSONResult uploadFacility(@ApiParam(value = "file", required = false) MultipartFile img,
-                                     String id,
-                                     Integer category,
-                                     String nameCn,
+                                     @RequestParam @ApiParam(required = true) String id,
+                                     @RequestParam @ApiParam(required = true) Integer category,
+                                     @RequestParam @ApiParam(required = true) String nameCn,
                                      String nameEn,
                                      String descriptionCn,
                                      String descriptionEn,
@@ -107,7 +101,7 @@ public class FacilityController extends BasicController{
     // 此接口为真删除，慎用！！！
     @ApiOperation(value = "删除设施信息（真删除，慎用！！！）", notes = "删除设施信息的接口")
     @PostMapping("/deleteFacilityById")
-    public JSONResult deleteFacilityById(String facilityId) {
+    public JSONResult deleteFacilityById(@RequestParam @ApiParam(required = true) String facilityId) {
         if (facilityId.isEmpty()){
             JSONResult.errorException("Id cannot be null");
         }
@@ -120,9 +114,11 @@ public class FacilityController extends BasicController{
 
     @ApiOperation(value = "更改设施信息", notes = "更改设施信息的接口")
     @PostMapping("/modifyFacilityInfo")
-    public JSONResult modifyFacilityInfo(String facilityId, PostType targetAttribute, String value){
+    public JSONResult modifyFacilityInfo(@RequestParam @ApiParam(required = true) String facilityId,
+                                         @RequestParam @ApiParam(required = true) PostType targetAttribute,
+                                         @RequestParam @ApiParam(required = true) String value){
         return facilityService.modifyFacilityInfo(facilityId, targetAttribute, value) > 0 ?
-                JSONResult.ok() : JSONResult.errorMsg("修改失败");
+                JSONResult.ok("修改成功") : JSONResult.errorMsg("修改失败");
     }
 
 }

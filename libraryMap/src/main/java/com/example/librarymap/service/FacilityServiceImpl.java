@@ -1,6 +1,7 @@
 package com.example.librarymap.service;
 
 import com.example.librarymap.config.PagedResult;
+import com.example.librarymap.enums.PostType;
 import com.example.librarymap.mapper.FacilityMapper;
 import com.example.librarymap.mapper.SearchRecordMapper;
 import com.example.librarymap.pojo.FacilityInfo;
@@ -144,6 +145,37 @@ public class FacilityServiceImpl implements FacilityService{
     @Override
     public int deleteFacility(String facilityId){
         return facilityMapper.deleteByPrimaryKey(facilityId);
+    }
+
+    @Override
+    public int modifyFacilityInfo(String facilityId, PostType targetAttribute, String value){
+        FacilityInfo facilityInfo = facilityMapper.selectByPrimaryKey(facilityId);
+        switch (targetAttribute) {
+            case CATEGORY:
+                int category = Integer.parseInt(value);
+                facilityInfo.setCategory(category);
+                break;
+            case NAMECN:
+                facilityInfo.setNameCn(value);
+                break;
+            case NAMEEN:
+                facilityInfo.setNameEn(value);
+                break;
+            case FLOORNUM:
+                int floorNum = Integer.parseInt(value);
+                facilityInfo.setFloorNum(floorNum);
+                break;
+            case DESCRIPTIONCN:
+                facilityInfo.setDescriptionCn(value);
+                break;
+            case DESCRIPTIONEN:
+                facilityInfo.setDescriptionEn(value);
+                break;
+            case CONTENTFORSEARCH:
+                facilityInfo.setContentForSearch(value);
+                break;
+        }
+        return facilityMapper.updateByPrimaryKey(facilityInfo);
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.librarymap.controller;
 
 import com.example.librarymap.config.JSONResult;
 import com.example.librarymap.config.PagedResult;
+import com.example.librarymap.enums.PostType;
 import com.example.librarymap.pojo.FacilityInfo;
 import com.example.librarymap.pojo.vo.FacilityVO;
 import io.swagger.annotations.*;
@@ -116,4 +117,12 @@ public class FacilityController extends BasicController{
         else
             return JSONResult.ok("删除成功");
     }
+
+    @ApiOperation(value = "更改设施信息", notes = "更改设施信息的接口")
+    @PostMapping("/modifyFacilityInfo")
+    public JSONResult modifyFacilityInfo(String facilityId, PostType targetAttribute, String value){
+        return facilityService.modifyFacilityInfo(facilityId, targetAttribute, value) > 0 ?
+                JSONResult.ok() : JSONResult.errorMsg("修改失败");
+    }
+
 }

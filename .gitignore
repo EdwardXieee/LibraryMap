@@ -106,6 +106,8 @@ Thumbs.db
 # property files #
 ##################
 *.properties
+*.yml
+*.yaml
 
 # front-end properties
 project.config.json

@@ -43,6 +43,39 @@ UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 --
+-- Table structure for table `specific_facility_info`
+--
+
+DROP TABLE IF EXISTS `specific_facility_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `specific_facility_info` (
+  `id` varchar(100) NOT NULL COMMENT '主键id',
+  `facility_id` varchar(100) NOT NULL COMMENT '外键id',
+  `name_CN` varchar(255) DEFAULT NULL COMMENT '中文名称',
+  `name_EN` varchar(255) DEFAULT NULL COMMENT '英文名称',
+  `floor_num` tinyint(4) NOT NULL DEFAULT '0' COMMENT '楼层数',
+  `content_for_search` varchar(255) DEFAULT NULL COMMENT '搜索条目（用#进行区分）',
+  `img_path` varchar(255) DEFAULT NULL COMMENT '设施图片',
+  `status` int(11) NOT NULL DEFAULT '1',
+  `create_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk1` FOREIGN KEY (`facility_id`) REFERENCES `facility_info` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='图书馆具体设施';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `specific_facility_info`
+--
+
+LOCK TABLES `specific_facility_info` WRITE;
+/*!40000 ALTER TABLE `specific_facility_info` DISABLE KEYS */;
+INSERT INTO `specific_facility_info` VALUES ('sfid1', "fid1", '名字儿子', 'namechild', 1, "#多功能#万能#投影","nqprod/oDwsO5Mjxnj2-O1yXl064bOQbELQ/article/1910312CX6FK5N0H/0.png",1,'2022-08-17 09:03:26'),('sfid2', "fid1", '名字儿子2', 'namechild2', 2, "#多功能#万能#投影","nqprod/oDwsO5Mjxnj2-O1yXl064bOQbELQ/article/1910312CX6FK5N0H/0.png",1,'2022-08-17 09:03:26');
+/*!40000 ALTER TABLE `specific_facility_info` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+--
 -- Table structure for table `facility_info`
 --
 

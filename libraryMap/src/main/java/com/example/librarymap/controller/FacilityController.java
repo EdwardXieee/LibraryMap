@@ -2,7 +2,7 @@ package com.example.librarymap.controller;
 
 import com.example.librarymap.config.JSONResult;
 import com.example.librarymap.config.PagedResult;
-import com.example.librarymap.enums.PostType;
+import com.example.librarymap.enums.FacilityPostType;
 import com.example.librarymap.pojo.FacilityInfo;
 import com.example.librarymap.pojo.vo.FacilityVO;
 import io.swagger.annotations.*;
@@ -56,7 +56,7 @@ public class FacilityController extends BasicController{
     }
 
 
-    @ApiOperation(value = "上传或修改设施信息", notes = "上传或修改设施信息的接口")
+    @ApiOperation(value = "上传设施信息", notes = "上传设施信息的接口")
     @PostMapping(value="/uploadFacility")
     public JSONResult uploadFacility(@ApiParam(value = "file", required = false) MultipartFile img,
                                      @RequestParam @ApiParam(required = true) String id,
@@ -115,7 +115,7 @@ public class FacilityController extends BasicController{
     @ApiOperation(value = "更改设施信息", notes = "更改设施信息的接口")
     @PostMapping("/modifyFacilityInfo")
     public JSONResult modifyFacilityInfo(@RequestParam @ApiParam(required = true) String facilityId,
-                                         @RequestParam @ApiParam(required = true) PostType targetAttribute,
+                                         @RequestParam @ApiParam(required = true) FacilityPostType targetAttribute,
                                          @RequestParam @ApiParam(required = true) String value){
         return facilityService.modifyFacilityInfo(facilityId, targetAttribute, value) > 0 ?
                 JSONResult.ok("修改成功") : JSONResult.errorMsg("修改失败");

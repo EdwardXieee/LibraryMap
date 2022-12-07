@@ -1,7 +1,7 @@
 package com.example.librarymap.service;
 
 import com.example.librarymap.config.PagedResult;
-import com.example.librarymap.enums.PostType;
+import com.example.librarymap.enums.FacilityPostType;
 import com.example.librarymap.mapper.FacilityMapper;
 import com.example.librarymap.mapper.SearchRecordMapper;
 import com.example.librarymap.pojo.FacilityInfo;
@@ -107,19 +107,16 @@ public class FacilityServiceImpl implements FacilityService{
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public PagedResult searchFacilityByKeyWordsOrTag(Boolean isSaveRecord, Integer page, Integer pageSize, String searchText, Integer floorNum){
-//        String[] texts = searchText.split(" ");
-
         // 开启分页查询并转换为vo对象
         // 在Example中的每一个Criteria相当于一个括号，把里面的内容当成一个整体
         Example facilityExample = new Example(FacilityInfo.class);
         facilityExample.setOrderByClause("create_date desc");
 
         Example.Criteria criteria = facilityExample.createCriteria();
-//        for (String text : texts) {
-            criteria.orLike("nameCn", "%" + searchText + "%");
-            criteria.orLike("nameEn", "%" + searchText + "%");
-            criteria.orLike("contentForSearch", "%" + searchText + "%");
-//        }
+
+        criteria.orLike("nameCn", "%" + searchText + "%");
+        criteria.orLike("nameEn", "%" + searchText + "%");
+        criteria.orLike("contentForSearch", "%" + searchText + "%");
 
         Example.Criteria floorNumCriteria = facilityExample.createCriteria();
         floorNumCriteria.andEqualTo("floorNum", floorNum);
@@ -148,7 +145,7 @@ public class FacilityServiceImpl implements FacilityService{
     }
 
     @Override
-    public int modifyFacilityInfo(String facilityId, PostType targetAttribute, String value){
+    public int modifyFacilityInfo(String facilityId, FacilityPostType targetAttribute, String value){
         FacilityInfo facilityInfo = facilityMapper.selectByPrimaryKey(facilityId);
         switch (targetAttribute) {
             case CATEGORY:

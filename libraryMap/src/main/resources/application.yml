@@ -13,6 +13,8 @@ spring:
 #  type-aliases-package : com.example.librarymap.pojo
 #  mapperLocations: classpath:mapper/*.xml
 
-
-
-
+#server:
+#  ssl:
+#    key-store: classpath:www.jumboxtech.com.jks
+#    key-store-password: zgg00o7b7xd8cj
+#    key-store-type: JKS

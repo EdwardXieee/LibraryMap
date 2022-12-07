@@ -2,11 +2,8 @@ package com.example.librarymap.controller;
 
 import com.example.librarymap.config.JSONResult;
 import com.example.librarymap.config.PagedResult;
-import com.example.librarymap.enums.FacilityPostType;
 import com.example.librarymap.enums.SpecificFacilityPostType;
-import com.example.librarymap.pojo.FacilityInfo;
 import com.example.librarymap.pojo.SpecificFacilityInfo;
-import com.example.librarymap.pojo.vo.FacilityVO;
 import com.example.librarymap.pojo.vo.SpecificFacilityVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,6 +20,7 @@ import java.util.List;
 @Api(value = "具体设施相关接口", tags = { "Specific-Facility-Controller" })
 @RequestMapping("/specificFacility")
 public class SpecificFacilityController extends BasicController{
+
     @ApiOperation(value = "查询所有具体设施", notes = "查询所有具体设施的接口")
     @PostMapping("/querySpecificFacilities")
     public JSONResult querySpecificFacilities() {
@@ -61,13 +59,13 @@ public class SpecificFacilityController extends BasicController{
 
     @ApiOperation(value = "上传具体设施信息", notes = "上传具体设施信息的接口")
     @PostMapping(value="/uploadSpecificFacility")
-    public JSONResult uploadSpecificFacility(@ApiParam(value = "file", required = false) MultipartFile img,
+    public JSONResult uploadSpecificFacility(@ApiParam(value = "file") MultipartFile img,
                                              @RequestParam @ApiParam(required = true) String id,
                                              @RequestParam @ApiParam(required = true) String facilityId,
                                              @RequestParam @ApiParam(required = true) String nameCn,
                                              String nameEn,
                                              Integer floorNum,
-                                             String contentForSearch) throws Exception{
+                                             String contentForSearch) {
         SpecificFacilityInfo specificFacilityInfo = new SpecificFacilityInfo();
 
         //上传设施图片
@@ -113,10 +111,10 @@ public class SpecificFacilityController extends BasicController{
 
     @ApiOperation(value = "更改具体设施信息", notes = "更改具体设施信息的接口")
     @PostMapping("/modifySpecificFacilityInfo")
-    public JSONResult modifySpecificFacilityInfo(@RequestParam @ApiParam(required = true) String facilityId,
+    public JSONResult modifySpecificFacilityInfo(@RequestParam @ApiParam(required = true) String specificFacilityId,
                                                  @RequestParam @ApiParam(required = true) SpecificFacilityPostType targetAttribute,
                                                  @RequestParam @ApiParam(required = true) String value){
-        return specificFacilityService.modifySpecificFacilityInfo(facilityId, targetAttribute, value) > 0 ?
+        return specificFacilityService.modifySpecificFacilityInfo(specificFacilityId, targetAttribute, value) > 0 ?
                 JSONResult.ok("修改成功") : JSONResult.errorMsg("修改失败");
     }
 }

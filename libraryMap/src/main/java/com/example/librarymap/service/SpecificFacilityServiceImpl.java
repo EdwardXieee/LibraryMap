@@ -1,24 +1,21 @@
 package com.example.librarymap.service;
 
 import com.example.librarymap.config.PagedResult;
-import com.example.librarymap.enums.FacilityPostType;
 import com.example.librarymap.enums.SpecificFacilityPostType;
 import com.example.librarymap.mapper.FacilityMapper;
 import com.example.librarymap.mapper.SpecificFacilityMapper;
-import com.example.librarymap.pojo.FacilityInfo;
 import com.example.librarymap.pojo.SpecificFacilityInfo;
-import com.example.librarymap.pojo.vo.FacilityVO;
 import com.example.librarymap.pojo.vo.SpecificFacilityVO;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class SpecificFacilityServiceImpl implements SpecificFacilityService{
 
     @Autowired
@@ -76,7 +73,7 @@ public class SpecificFacilityServiceImpl implements SpecificFacilityService{
         // 开启分页查询并转换为vo对象
         // 在Example中的每一个Criteria相当于一个括号，把里面的内容当成一个整体
         Example specificFacilityExample = new Example(SpecificFacilityInfo.class);
-        specificFacilityExample.setOrderByClause("floor_num desc");
+        specificFacilityExample.setOrderByClause("floor_num asc");
 
         Example.Criteria criteria = specificFacilityExample.createCriteria();
 

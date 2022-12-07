@@ -39,21 +39,22 @@ public class FacilityController extends BasicController{
     }
 
 
-    @ApiOperation(value = "通过关键词对设施进行搜索", notes = "通过关键词对设施进行搜索的接口")
-    @PostMapping("/searchFacilityByKeyWordsOrTag")
-    public JSONResult searchFacilityByKeyWordsOrTag(Boolean isSaveRecord,
-                                                    Integer page, Integer pageSize,
-                                                    @RequestParam @ApiParam(required = true) String searchText,
-                                                    Integer floorNum) {
-
-        if (page == null) {
-            page = 1;
-        }
-
-        PagedResult result = facilityService.searchFacilityByKeyWordsOrTag(isSaveRecord, page, pageSize, searchText, floorNum);
-
-        return JSONResult.ok(result);
-    }
+    // 设施搜索暂时不再需要
+//    @ApiOperation(value = "通过关键词对设施进行搜索", notes = "通过关键词对设施进行搜索的接口")
+//    @PostMapping("/searchFacilityByKeyWordsOrTag")
+//    public JSONResult searchFacilityByKeyWordsOrTag(Boolean isSaveRecord,
+//                                                    Integer page, Integer pageSize,
+//                                                    @RequestParam @ApiParam(required = true) String searchText,
+//                                                    Integer floorNum) {
+//
+//        if (page == null) {
+//            page = 1;
+//        }
+//
+//        PagedResult result = facilityService.searchFacilityByKeyWordsOrTag(isSaveRecord, page, pageSize, searchText, floorNum);
+//
+//        return JSONResult.ok(result);
+//    }
 
 
     @ApiOperation(value = "上传设施信息", notes = "上传设施信息的接口")

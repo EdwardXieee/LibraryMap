@@ -6,7 +6,7 @@ public class SpecificFacilityVO {
     private String id;
 
     // 对应设施大类的id
-    private String facility_id;
+    private String facilityId;
 
     // 设施名称中文
     private String nameCn;
@@ -43,12 +43,12 @@ public class SpecificFacilityVO {
         this.id = id;
     }
 
-    public String getFacility_id() {
-        return facility_id;
+    public String getFacilityId() {
+        return facilityId;
     }
 
-    public void setFacility_id(String facility_id) {
-        this.facility_id = facility_id;
+    public void setFacilityId(String facilityId) {
+        this.facilityId = facilityId;
     }
 
     public String getNameCn() {

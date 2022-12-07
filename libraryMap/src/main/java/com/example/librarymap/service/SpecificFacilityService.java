@@ -1,13 +1,14 @@
 package com.example.librarymap.service;
 
 import com.example.librarymap.config.PagedResult;
-import com.example.librarymap.enums.FacilityPostType;
 import com.example.librarymap.enums.SpecificFacilityPostType;
 import com.example.librarymap.pojo.SpecificFacilityInfo;
 import com.example.librarymap.pojo.vo.SpecificFacilityVO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface SpecificFacilityService {
     List<SpecificFacilityVO> getAllSpecificFacilities();
 

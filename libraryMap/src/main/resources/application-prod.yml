@@ -2,7 +2,7 @@ server:
   port: 8011
   ssl:
     key-store: classpath:www.jumboxtech.com.jks
-    key-store-password: zgg00o7b7xd8cj
+    key-store-password: rcz09uf8amhl6
     key-store-type: JKS
 
 spring:

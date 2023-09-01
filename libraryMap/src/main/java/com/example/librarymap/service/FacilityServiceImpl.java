@@ -32,27 +32,27 @@ public class FacilityServiceImpl implements FacilityService{
         switch (facilityInfo.getCategory()){
             case 1:
                 facilityVO.setTitleCn("书籍类设施");
-                facilityVO.setTitleEn("");
+                facilityVO.setTitleEn("Book");
                 break;
             case 2:
                 facilityVO.setTitleCn("自习类设施");
-                facilityVO.setTitleEn("");
+                facilityVO.setTitleEn("Self-Study");
                 break;
             case 3:
                 facilityVO.setTitleCn("小组类设施");
-                facilityVO.setTitleEn("");
+                facilityVO.setTitleEn("Group");
                 break;
             case 4:
                 facilityVO.setTitleCn("多功能类设施");
-                facilityVO.setTitleEn("");
+                facilityVO.setTitleEn("Multi-Function");
                 break;
             case 5:
                 facilityVO.setTitleCn("基础设施");
-                facilityVO.setTitleEn("");
+                facilityVO.setTitleEn("Infrastructure");
                 break;
             case 6:
                 facilityVO.setTitleCn("特殊设施");
-                facilityVO.setTitleEn("");
+                facilityVO.setTitleEn("Special Facility");
                 break;
         }
         return facilityVO;
